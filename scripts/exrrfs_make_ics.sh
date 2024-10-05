@@ -801,7 +801,7 @@ fi
 export pgm="chgres_cube"
 . prep_step
 
-${APRUN} ${EXECdir}/$pgm >>$pgmout 2>errfile
+${APRUN} ${CHGRES_CUBE_EXE:-${EXECdir}/$pgm} >>$pgmout 2>errfile
 export err=$?; err_chk
 #
 #-----------------------------------------------------------------------

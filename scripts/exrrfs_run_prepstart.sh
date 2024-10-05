@@ -1226,7 +1226,7 @@ Please check the following user defined variables:
       surface_file='sfc_data.nc'
     fi
     . prep_step
-    ${APRUN} ${EXECdir}/$pgm ${surface_file} fvcom.nc ${FVCOM_WCSTART} ${fvcom_time} ${IO_LAYOUT_Y} >>$pgmout 2>errfile
+    ${APRUN} ${FVCOM_TO_FV3_EXE:-${EXECdir}/$pgm} ${surface_file} fvcom.nc ${FVCOM_WCSTART} ${fvcom_time} ${IO_LAYOUT_Y} >>$pgmout 2>errfile
     export err=$?; err_chk
     mv errfile errfile_fvcom
   fi

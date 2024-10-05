@@ -165,7 +165,7 @@ print_info_msg "Starting orography file generation..."
 export pgm="orog"
 . prep_step
 
-$APRUN ${EXECdir}/$pgm < "${input_redirect_fn}" >>$pgmout 2>${tmp_dir}/errfile
+$APRUN ${OROG_EXE:-${EXECdir}/$pgm} < "${input_redirect_fn}" >>$pgmout 2>${tmp_dir}/errfile
 export err=$?; err_chk
 mv ${tmp_dir}/errfile ${tmp_dir}/errfile_orog
 
@@ -222,7 +222,7 @@ EOF
   export pgm="orog_gsl"
   . prep_step
 
-  ${APRUN} ${EXECdir}/$pgm < "${input_redirect_fn}" >>$pgmout 2>${tmp_dir}/errfile
+  ${APRUN} ${OROG_GSL_EXE:-${EXECdir}/$pgm} < "${input_redirect_fn}" >>$pgmout 2>${tmp_dir}/errfile
   export err=$?; err_chk
   mv ${tmp_dir}/errfile ${tmp_dir}/errfile_orog_gsl
 
@@ -355,7 +355,7 @@ print_info_msg "Starting filtering of orography..."
 export pgm="filter_topo"
 . prep_step
 
-$APRUN ${EXECdir}/$pgm >>$pgmout 2>${tmp_dir}/errfile
+$APRUN ${FILTER_TOPO_EXE:-${EXECdir}/$pgm} >>$pgmout 2>${tmp_dir}/errfile
 export err=$?; err_chk
 mv ${tmp_dir}/errfile ${tmp_dir}/errfile_filter_topo
 #
@@ -412,7 +412,7 @@ for halo_num in "${halo_num_list[@]}"; do
 
   . prep_step
 
-  $APRUN ${EXECdir}/$pgm < ${nml_fn} >>$pgmout 2>${tmp_dir}/errfile
+  $APRUN ${SHAVE_EXE:-${EXECdir}/$pgm} < ${nml_fn} >>$pgmout 2>${tmp_dir}/errfile
   export err=$?; err_chk
   mv ${tmp_dir}/errfile ${tmp_dir}/errfile_shave_${halo_num}
   mv ${shaved_fp} ${OROG_DIR}

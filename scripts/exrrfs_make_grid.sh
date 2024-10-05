@@ -125,7 +125,7 @@ if [ "${GRID_GEN_METHOD}" = "GFDLgrid" ]; then
   export pgm="make_hgrid"
   . prep_step
 
-  $APRUN ${EXECdir}/$pgm \
+  $APRUN ${MAKE_HGRID_EXE:-${EXECdir}/$pgm} \
     --grid_type gnomonic_ed \
     --nlon ${nx_t6sg} \
     --grid_name ${grid_name} \
@@ -188,7 +188,7 @@ $settings"
   export pgm="regional_esg_grid"
   . prep_step
 
-  $APRUN ${EXECdir}/$pgm ${rgnl_grid_nml_fp} >>$pgmout 2>${tmpdir}/errfile
+  $APRUN ${REGIONAL_ESG_GRID:-${EXECdir}/$pgm} ${rgnl_grid_nml_fp} >>$pgmout 2>${tmpdir}/errfile
   export err=$?; err_chk
   mv ${tmpdir}/errfile ${tmpdir}/errfile_regional_esg_grid
 
@@ -212,7 +212,7 @@ print_info_msg "$VERBOSE" "Grid file generation completed successfully."
 export pgm="global_equiv_resol"
 . prep_step
 
-$APRUN ${EXECdir}/$pgm "${grid_fp}" >>$pgmout 2>${tmpdir}/errfile
+$APRUN ${GLOBAL_EQUIV_RESOL_EXE:-${EXECdir}/$pgm} "${grid_fp}" >>$pgmout 2>${tmpdir}/errfile
 export err=$?; err_chk
 mv ${tmpdir}/errfile ${tmpdir}/errfile_global_equiv_resol
 
@@ -309,7 +309,7 @@ for halo_num in "${halo_num_list[@]}"; do
 
   . prep_step
 
-  $APRUN ${EXECdir}/$pgm < ${nml_fn} >>$pgmout 2>${tmpdir}/errfile
+  $APRUN ${SHAVE_EXE:-${EXECdir}/$pgm} < ${nml_fn} >>$pgmout 2>${tmpdir}/errfile
   export err=$?; err_chk
   mv ${tmpdir}/errfile ${tmpdir}/errfile_shave_nh${halo_num}
   mv ${shaved_fp} ${GRID_DIR}
@@ -334,7 +334,7 @@ for halo_num in "${halo_num_list[@]}"; do
 
   . prep_step
 
-  $APRUN ${EXECdir}/$pgm \
+  $APRUN ${MAKE_SOLO_MOSAIC_EXE:-${EXECdir}/$pgm} \
       --num_tiles 1 \
       --dir "${GRID_DIR}" \
       --tile_file "${grid_fn}" \

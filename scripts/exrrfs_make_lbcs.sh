@@ -765,7 +765,7 @@ $settings"
   export pgm="chgres_cube"
   . prep_step
 
-  ${APRUN} ${EXECdir}/$pgm >>$pgmout 2>errfile
+  ${APRUN} ${CHGRES_CUBE_EXE:-${EXECdir}/$pgm} >>$pgmout 2>errfile
   export err=$?; err_chk
 #
 # Move LBCs file for the current lateral boundary update time to the LBCs

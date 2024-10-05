@@ -154,7 +154,7 @@ esac
 export pgm="sfc_climo_gen"
 . prep_step
 
-$APRUN $EXECdir/$pgm >>$pgmout 2>errfile
+$APRUN ${SFC_CLIMO_GEN:-$EXECdir/$pgm} >>$pgmout 2>errfile
 export err=$?; err_chk
 #
 #-----------------------------------------------------------------------

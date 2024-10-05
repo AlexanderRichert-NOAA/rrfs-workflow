@@ -311,7 +311,7 @@ print_info_msg "$VERBOSE" "Starting post-processing for fhr = $fhr hr..."
 export pgm="upp.x"
 . prep_step
 
-${APRUN} $EXECdir/$pgm < itag >>$pgmout 2>errfile
+${APRUN} ${UPP_EXE:-$EXECdir/$pgm} < itag >>$pgmout 2>errfile
 export err=$?; err_chk
 #
 #-----------------------------------------------------------------------
