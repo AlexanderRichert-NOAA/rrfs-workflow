@@ -1014,9 +1014,9 @@ EOF
 #-----------------------------------------------------------------------
 #
 if [[ ${gsi_type} == "ANALYSIS" && ${anav_type} == "AERO" ]]; then
-  gsi_exec="${EXECdir}/gsi.x.sd"
+  gsi_exec=${GSI_EXE:-${EXECdir}/gsi.x.sd}
 else
-  gsi_exec="${EXECdir}/gsi.x"
+  gsi_exec=${GSI_EXE:-${EXECdir}/gsi.x}
 fi
 cp ${gsi_exec} ${analworkdir}/gsi.x
 

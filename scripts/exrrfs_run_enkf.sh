@@ -452,7 +452,7 @@ export pgm="enkf.x"
 
 countdiag=$(ls diag*conv* | wc -l)
 if [ $countdiag -gt $nens ]; then
-  ${APRUN} ${EXECdir}/$pgm < enkf.nml >>$pgmout 2>errfile
+  ${APRUN} ${ENKF_EXE:-${EXECdir}/$pgm} < enkf.nml >>$pgmout 2>errfile
   export err=$?; err_chk
 
   cp ${pgmout} ${enkfanal_nwges_dir}/.
