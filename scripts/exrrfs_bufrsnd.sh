@@ -331,8 +331,6 @@ cd $DATA
 # SNDP code
 ########################################################
 
-export pgm=rrfs_sndp
-
 cp $PARMfv3/regional_sndp.parm.mono $DATA/regional_sndp.parm.mono
 cp $PARMfv3/regional_bufr.tbl $DATA/regional_bufr.tbl
 
